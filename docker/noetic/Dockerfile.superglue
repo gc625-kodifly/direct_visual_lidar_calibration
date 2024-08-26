@@ -1,0 +1,12 @@
+FROM koide3/direct_visual_lidar_calibration:noetic
+
+RUN sudo apt update && sudo apt install -y \
+    python3-pip
+
+RUN pip3 install torch matplotlib
+
+# Install SuperGlue
+
+RUN git clone https://github.com/magicleap/SuperGluePretrainedNetwork /root/SuperGlue
+# Initialize PYTHONPATH and then add SuperGlue path
+ENV PYTHONPATH="${PYTHONPATH}:/root/SuperGlue"
